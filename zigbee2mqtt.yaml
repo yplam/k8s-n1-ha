@@ -1,0 +1,33 @@
+additionalVolumeMounts:
+  - name: usb
+    mountPath: /dev/ttyUSB0
+
+additionalVolumes:
+  - name: usb
+    hostPath:
+      path: /dev/ttyUSB0
+
+persistence:
+  config:
+    enabled: true
+    mountPath: /data
+    existingClaim:  zigbee2mqtt
+    size: 1Gi
+    retain: true
+
+env:
+  TZ: Asia/Shanghai
+nodeSelector:
+    dongle: zigbee
+securityContext:
+  privileged: true
+
+ingress:
+  main:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - host: zigbee2mqtt.cycbox.com
+        paths:
+          - path: /

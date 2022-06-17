@@ -1,0 +1,14 @@
+persistence:
+  configinc:
+    enabled: true
+    mountPath: /config
+    existingClaim:  mosquitto
+    size: 1Gi
+    retain: true
+env:
+  TZ: Asia/Shanghai
+auth:
+  enabled: true
+service:
+  main:
+    type: LoadBalancer

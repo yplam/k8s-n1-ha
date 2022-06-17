@@ -1,0 +1,25 @@
+image:
+  repository: registry.cn-hangzhou.aliyuncs.com/yplam/home-assistant
+persistence:
+  config:
+    enabled: true
+    mountPath:  /config
+    existingClaim:  homeassistant
+    size: 30Gi
+    retain: true
+ingress:
+  main:
+    enabled: true
+    annotations:
+      nginx.org/websocket-services: ha
+      kubernetes.io/ingress.class: nginx
+    hosts:
+      - host: ha.cycbox.com
+        paths:
+          - path: /
+
+env:
+  TZ: Asia/Shanghai
+
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet

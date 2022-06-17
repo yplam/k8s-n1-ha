@@ -1,0 +1,17 @@
+controller:
+  name: controller
+  image:
+    registry: registry.cn-hangzhou.aliyuncs.com
+    image: yplam/ingress-nginx-controller
+    pullPolicy: IfNotPresent
+    digest: null
+    digestChroot: null
+  admissionWebhooks:
+    patch:
+      enabled: true
+      image:
+        registry: registry.cn-hangzhou.aliyuncs.com
+        image: yplam/kube-webhook-certgen
+        tag: v1.1.1
+        digest: null
+        pullPolicy: IfNotPresent
